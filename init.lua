@@ -14,5 +14,5 @@ require "user.bufferline"
 require "user.toggleterm"
 require "user.lualine"
 require "user.project"
-require "user.rainbow"
+require "user.rainbow-delimiter"
 --require("luasnip.loaders.from_vscode").lazy_load({ paths = {"./lua/user.snippets.suitescript" }})

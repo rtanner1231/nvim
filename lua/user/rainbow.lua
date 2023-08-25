@@ -1,3 +1,4 @@
+--No longer used
 require("nvim-treesitter.configs").setup {
   highlight = {
       -- ...
