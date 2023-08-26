@@ -75,3 +75,6 @@ keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Toggle reletive line numbers
 keymap("n","<leader>l", ":set rnu!<cr>", opts)
+
+--Open code actions
+keymap("n","<leader>a","<cmd>lua vim.lsp.buf.code_action()<cr>",opts)
