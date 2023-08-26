@@ -6,7 +6,7 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.g.mapleader=' '
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-require("lazy").setup('user.plugins')
+require("lazy").setup('plugins')
 require "user.options"
 require "user.keymaps"
 require "user.colorscheme"
