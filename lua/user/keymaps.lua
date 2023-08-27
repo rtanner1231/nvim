@@ -78,3 +78,8 @@ keymap("n","<leader>l", ":set rnu!<cr>", opts)
 
 --Open code actions
 keymap("n","<leader>a",":CodeActionMenu<cr>",opts)
+
+--git
+keymap("n","<leader>[",":Gitsigns prev_hunk<cr>",opts)
+keymap("n","<leader>]",":Gitsigns next_hunk<cr>",opts)
+keymap("n","<leader>=",":Gitsigns preview_hunk<cr>",opts)
