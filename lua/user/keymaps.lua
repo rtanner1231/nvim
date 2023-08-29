@@ -83,3 +83,9 @@ keymap("n","<leader>a",":CodeActionMenu<cr>",opts)
 keymap("n","<leader>[",":Gitsigns prev_hunk<cr>",opts)
 keymap("n","<leader>]",":Gitsigns next_hunk<cr>",opts)
 keymap("n","<leader>=",":Gitsigns preview_hunk<cr>",opts)
+
+--navbuddy
+keymap("n","<leader>n",":Navbuddy<cr>",opts)
+
+--trouble
+keymap("n","<leader>u",":TroubleToggle document_diagnostics<cr>",opts)
