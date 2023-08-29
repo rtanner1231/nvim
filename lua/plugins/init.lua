@@ -29,6 +29,7 @@ return {
   "lunarvim/darkplus.nvim",
   "folke/tokyonight.nvim",
   "Mofiqul/vscode.nvim",
+  "rebelot/kanagawa.nvim",
 
   -- cmp plugins
   "hrsh7th/nvim-cmp", -- The completion plugin
