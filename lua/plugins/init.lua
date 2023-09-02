@@ -61,7 +61,7 @@ return {
   },
   'JoosepAlviste/nvim-ts-context-commentstring',
   'HiPhish/rainbow-delimiters.nvim',
-  --"nvim-treesitter/playground",
+  "nvim-treesitter/playground",
 
   -- Git
   "lewis6991/gitsigns.nvim",
