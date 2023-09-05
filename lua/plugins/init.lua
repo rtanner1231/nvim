@@ -30,6 +30,7 @@ return {
   "folke/tokyonight.nvim",
   "Mofiqul/vscode.nvim",
   "rebelot/kanagawa.nvim",
+  { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
 
   -- cmp plugins
   "hrsh7th/nvim-cmp", -- The completion plugin
