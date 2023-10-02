@@ -22,7 +22,7 @@ vim.g.maplocalleader = " "
 -- Better window navigation
 keymap("n", "<C-h>", "<C-w>h", opts)
 keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-k>", "<C-w>k", opts)
+keymap("n", "<C-K>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 -- Resize with arrows
@@ -93,3 +93,7 @@ keymap("n","<leader>n",":Navbuddy<cr>",opts)
 
 --trouble
 keymap("n","<leader>u",":TroubleToggle document_diagnostics<cr>",opts)
+
+--suiteql
+keymap("n","<leader>ss",":FormatSingleSuiteQL<cr>",opts)
+keymap("n","<leader>sa",":FormatSuiteQL<cr>",opts)

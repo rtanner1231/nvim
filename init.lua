@@ -23,4 +23,5 @@ require "user.toggleterm"
 require "user.lualine"
 require "user.project"
 require "user.rainbow-delimiter"
+require "user.custom.formatsql"
 --require("luasnip.loaders.from_vscode").lazy_load({ paths = {"./lua/user.snippets.suitescript" }})
