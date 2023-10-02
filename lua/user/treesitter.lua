@@ -17,4 +17,7 @@ configs.setup {
     enable = true,
     enable_autocmd = false,
   },
+  custom_captures={
+        ["sqlkeyword"] = "SqlKeyword"
+    }
 }
