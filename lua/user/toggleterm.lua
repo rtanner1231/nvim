@@ -26,17 +26,48 @@ toggleterm.setup({
 	},
 })
 
-function _G.set_terminal_keymaps()
-  local opts = {noremap = true}
-  vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
-  vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
-end
+-- function _G.set_terminal_keymaps()
+--   local opts = {noremap = true}
+--   vim.api.nvim_buf_set_keymap(0, 't', '<esc>', [[<C-\><C-n>]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', 'jk', [[<C-\><C-n>]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-h>', [[<C-\><C-n><C-W>h]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-j>', [[<C-\><C-n><C-W>j]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-k>', [[<C-\><C-n><C-W>k]], opts)
+--   vim.api.nvim_buf_set_keymap(0, 't', '<C-l>', [[<C-\><C-n><C-W>l]], opts)
+-- end
 
-vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+-- function _G.set_terminal_keymaps()
+--   local opts = {buffer = 0}
+--   vim.keymap.set('t', '<esc>', [[<C-\><C-n>]], opts)
+--   vim.keymap.set('t', 'jk', [[<C-\><C-n>]], opts)
+--   vim.keymap.set('t', '<C-h>', [[<Cmd>wincmd h<CR>]], opts)
+--   vim.keymap.set('t', '<C-j>', [[<Cmd>wincmd j<CR>]], opts)
+--   vim.keymap.set('t', '<C-k>', [[<Cmd>wincmd k<CR>]], opts)
+--   vim.keymap.set('t', '<C-l>', [[<Cmd>wincmd l<CR>]], opts)
+--   vim.keymap.set('t', '<C-w>', [[<C-\><C-n><C-w>]], opts)
+-- end
+--
+-- vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+--vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
+function lazygit_toggle()
+  local Terminal = require("toggleterm.terminal").Terminal
+  local lazygit = Terminal:new {
+    cmd = "lazygit",
+    hidden = true,
+    direction = "float",
+    float_opts = {
+      border = "none",
+      width = 100000,
+      height = 100000,
+    },
+    on_open = function(_)
+      vim.cmd "startinsert!"
+    end,
+    on_close = function(_) end,
+    count = 99,
+  }
+  lazygit:toggle()
+end
 
 local Terminal = require("toggleterm.terminal").Terminal
 local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
@@ -68,3 +99,6 @@ local python = Terminal:new({ cmd = "python", hidden = true })
 function _PYTHON_TOGGLE()
 	python:toggle()
 end
+
+--vim.api.nvim_set_keymap("n", "<leader>gl", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", {noremap = true, silent = true})
+vim.api.nvim_set_keymap("n", "<leader>gl", "<cmd>lua lazygit_toggle()<CR>", {noremap = true, silent = true})
