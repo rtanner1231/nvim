@@ -72,24 +72,30 @@ local spaces = function()
 end
 
 local read_file = function(path)
-  local err, fd = a.uv.fs_open(path, "r", 438)
-  assert(not err, err)
-  local err, stat = a.uv.fs_fstat(fd)
-  assert(not err, err)
+    local content=''
+    local file=io.open(path,'r')
 
-  local err, data = a.uv.fs_read(fd, stat.size, 0)
-  assert(not err, err)
-
-  local err = a.uv.fs_close(fd)
-  assert(not err, err)
-
-  return data
+    if file then
+        content=file:read('*a')
+        file:close()
+    end
+    return content
 end
 
+
 local suitecloudaccount =function()
-    local data=read_file('./project.json')
-    print(data);
-  return [[hello world]]
+    local cwd=vim.fn.getcwd()
+    local data=read_file(cwd..'/project.json')
+    --print(data);
+    --local file_lines=lines(data)
+    local _,_,c=string.find(data,'"defaultAuthId":%s*"(.*)"')
+
+  --return [[hello world]]
+    if c==nil then
+        return ''
+    else
+        return c
+    end
 end
 
 lualine.setup({
@@ -106,7 +112,7 @@ lualine.setup({
 		lualine_b = { mode,filename },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, spaces, "encoding", filetype },
+		lualine_x = { diff, suitecloudaccount, "encoding", filetype },
 		lualine_y = { location },
 		lualine_z = { progress },
 	},
