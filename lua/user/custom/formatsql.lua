@@ -77,11 +77,9 @@ local run_format=function(pos,bufnr)
     local changes={}
 
     for id,node in emb_suiteql:iter_captures(root,bufnr,0,-1) do
-        
         local name=emb_suiteql.captures[id]
-        if name=='sql' then
-            
-            local range={node:range()}
+        local range={node:range()}
+        if name=='sql' and (pos==nil or pos_within_range(pos,range)) then
             local indent=string.rep(" ",range[2])
             local sql_text=vim.treesitter.get_node_text(node,bufnr)
 
@@ -101,24 +99,13 @@ local run_format=function(pos,bufnr)
             --convert from string to table of lines
             local formatted_lines=lines(formatted_text)
 
-            for idx,line in ipairs(formatted_lines) do 
+            for idx,line in ipairs(formatted_lines) do
                 if idx>1 then
                     formatted_lines[idx]=indent..line
                 end
             end
 
-            local add_change=false
-
-            if pos==nil then
-                add_change=true
-            else
-                add_change= pos_within_range(pos,range)
-            end
-
-            if(add_change) then
-                table.insert(changes,1,{start_row=range[1],start_col=range[2], end_row=range[3],end_col=range[4],formatted=formatted_lines})
-            end
-                
+            table.insert(changes,1,{start_row=range[1],start_col=range[2], end_row=range[3],end_col=range[4],formatted=formatted_lines})
         end
     end
 
