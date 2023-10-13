@@ -26,10 +26,10 @@ keymap("n", "<C-K>", "<C-w>k", opts)
 keymap("n", "<C-l>", "<C-w>l", opts)
 
 --splits
-keymap("n","<leader>vv",":vsplit<CR>",opts)
-keymap("n","<leader>vh",":split<CR>",opts)
-keymap("n","<leader>vc","<C-w>c",opts)
-keymap("n","<leader>vo",":on<CR>",opts)
+-- keymap("n","<leader>vv",":vsplit<CR>",opts)
+-- keymap("n","<leader>vh",":split<CR>",opts)
+-- keymap("n","<leader>vc","<C-w>c",opts)
+-- keymap("n","<leader>vo",":on<CR>",opts)
 
 -- Resize with arrows
 keymap("n", "<C-Up>", ":resize +2<CR>", opts)
