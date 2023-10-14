@@ -37,6 +37,13 @@ return {
                 ["8"]={"<cmd>lua require('harpoon.ui').nav_file(8)<cr>","Nav to file 8"},
                 ["9"]={"<cmd>lua require('harpoon.ui').nav_file(9)<cr>","Nav to file 9"},
                 
+            },
+        s={
+                name="Suitecloud",
+                s={":FormatSingleSuiteQL<cr>","Format SuiteQL under cursor"},
+                a={":FormatSuiteQL<cr>","Format all SuiteQL in file"},
+                p={":SDFDeploy<cr>","Run suitecloud deploy"},
+                c={":SDFSelectAccount<cr>","Select SDF Account"}
             }
 
 

@@ -101,5 +101,5 @@ keymap("n","<leader>n",":Navbuddy<cr>",opts)
 keymap("n","<leader>u",":TroubleToggle document_diagnostics<cr>",opts)
 
 --suiteql
-keymap("n","<leader>ss",":FormatSingleSuiteQL<cr>",opts)
-keymap("n","<leader>sa",":FormatSuiteQL<cr>",opts)
+--keymap("n","<leader>ss",":FormatSingleSuiteQL<cr>",opts)
+--keymap("n","<leader>sa",":FormatSuiteQL<cr>",opts)
