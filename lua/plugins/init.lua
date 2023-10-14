@@ -16,6 +16,7 @@ return {
   "nvim-lua/plenary.nvim", -- Useful lua functions used ny lots of plugins
   "windwp/nvim-autopairs", -- Autopairs, integrates with both cmp and treesitter
   "numToStr/Comment.nvim", -- Easily comment stuff
+  'MunifTanjim/nui.nvim',
   'kyazdani42/nvim-web-devicons',
   'kyazdani42/nvim-tree.lua',
   "akinsho/bufferline.nvim",
