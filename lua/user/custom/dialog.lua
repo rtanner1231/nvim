@@ -172,4 +172,58 @@ M.option=function(message,options,selection_callback)
     vim.api.nvim_buf_set_option(popup.bufnr,'readonly',true)
 end
 
+M.alert=function(message_lines)
+
+    local message_height=table_length(message_lines)
+    local max_width=max_chars(message_lines)
+
+    local popup=Popup({
+        enter=true,
+        focusable=true,
+        position="50%",
+        size={
+            height=message_height+2,
+            width=max_width+5
+        },
+        border={
+            style="rounded",
+        },
+        buf_options={
+            modifiable=true,
+            readonly=false
+        }
+    })
+    popup:mount()
+
+    local close_keys={'<esc>','q','<enter>'}
+
+
+
+    for _,v in pairs(close_keys) do
+        popup:map('n',v,function(bufnr)
+
+            popup:unmount()
+        end,{noremap=true})
+    end
+    
+
+
+
+    popup:on(event.BufLeave, function()
+        popup:unmount()
+    end)
+
+    local lines={''}
+
+    for _,v in pairs(message_lines) do
+        table.insert(lines,v)
+    end
+
+    vim.api.nvim_buf_set_lines(popup.bufnr, 0, 1, false, lines)
+
+    vim.api.nvim_buf_set_option(popup.bufnr,'modifiable',false)
+    vim.api.nvim_buf_set_option(popup.bufnr,'readonly',true)
+
+end
+
 return M;
