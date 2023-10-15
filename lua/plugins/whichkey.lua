@@ -43,7 +43,9 @@ return {
                 s={":FormatSingleSuiteQL<cr>","Format SuiteQL under cursor"},
                 a={":FormatSuiteQL<cr>","Format all SuiteQL in file"},
                 p={":SDFDeploy<cr>","Run suitecloud deploy"},
-                c={":SDFSelectAccount<cr>","Select SDF Account"}
+                c={":SDFSelectAccount<cr>","Select SDF Account"},
+                d={":SDFDeployDir<cr>","Deploy all files in current file's directory"},
+                f={":SDFDeployFile<cr>","Deploy current buffer file"}
             }
 
 
