@@ -1,4 +1,6 @@
 local Dialog=require('user/custom/dialog')
+local File=require('user/custom/fileio')
+local SDFFileDeploy=require('user/custom/sdffiledeploy')
 
 local read_file = function(path)
     local content=''
@@ -60,6 +62,11 @@ local is_sdf_project=function()
     end
 end
 
+local send_to_terminal=function(command)
+    local full_command="TermExec cmd='"..command.."'"
+    vim.cmd(full_command)
+end
+
 local deploy_project=function()
     
     local sdf_account=suitecloudaccount()
@@ -67,7 +74,7 @@ local deploy_project=function()
     local message={sdf_account,"Are you sure you want to deploy?"}
 
     Dialog.confirm(message,function()
-        vim.cmd "TermExec cmd='suitecloud project:deploy'"
+        send_to_terminal('suitecloud project:deploy')
     end)
 
 
@@ -113,6 +120,30 @@ local get_sdf_accounts=function()
     return account_table
 end
 
+local run_typescript_pre=function()
+    io.popen('npm run build')
+end
+
+local deploy_files=function(file_list,is_typescript)
+    
+    local sdf_account=suitecloudaccount()
+    local confirm_message={sdf_account,"Deploy the following files?"}
+
+    for _,v in pairs(file_list) do
+        table.insert(confirm_message,v)
+    end
+
+    Dialog.confirm(confirm_message,function()
+        local command=SDFFileDeploy.get_command_from_files(file_list)
+
+        if is_typescript then
+            command='npm run build && '..command
+        end
+
+        send_to_terminal(command)
+    end)
+end
+
 vim.api.nvim_create_user_command("SDFDeploy",function()
 
     if not is_sdf_project() then
@@ -139,5 +170,27 @@ vim.api.nvim_create_user_command("SDFSelectAccount",function()
     Dialog.option('Select SDF Account',accounts,set_sdf_account)
 end,{})
 
+vim.api.nvim_create_user_command("SDFDeployDir",function()
 
+    if not is_sdf_project() then
+        return
+    end
+
+    local files,is_typescript=SDFFileDeploy.get_dir_file_list({typescript_path='/TypeScripts/'})
+
+    deploy_files(files,is_typescript)
+    
+end,{})
+
+vim.api.nvim_create_user_command("SDFDeployFile",function()
+
+    if not is_sdf_project() then
+        return
+    end
+
+    local files,is_typescript=SDFFileDeploy.get_single_file_list({typescript_path='/TypeScripts/'})
+
+    deploy_files(files,is_typescript)
+    
+end,{})
 
