@@ -134,6 +134,8 @@ M.option=function(message,options,selection_callback)
     local lines={''}
 
     local current_key=1
+    local line_mapping_set={}
+
     for _,v in pairs(options) do
 
         local key_to_use=tostring(current_key)
@@ -152,8 +154,20 @@ M.option=function(message,options,selection_callback)
 
         table.insert(lines,key_text..': '..v.option_text)
 
+        line_mapping_set[current_key+1]=v.value
         current_key=current_key+1
+
+        
     end
+
+    popup:map('n','<enter>',function(bufnr)
+        local r=vim.api.nvim__buf_stats(0).current_lnum
+        if line_mapping_set[r]~=nil then
+            popup:unmount()
+            selection_callback(line_mapping_set[r])
+        end
+        
+    end)
 
     popup:map('n','<esc>',function(bufnr)
 
