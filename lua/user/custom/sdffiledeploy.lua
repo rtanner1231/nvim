@@ -72,6 +72,38 @@ local get_final_paths=function(relpaths,opts)
     return final_paths,is_typescript
 end
 
+local function string_to_table(str)
+  local result = {}
+  for line in str:gmatch '[^\n]+' do
+    table.insert(result, line)
+  end
+  return result
+
+end
+
+local get_git_command_file_list=function(command,opts)
+    
+    local handle=io.popen(command)
+    if(handle==nil) then
+        return
+    end
+    local result=handle:read("*a")
+    
+    local result_lines=string_to_table(result)
+
+    local normalized_lines={}
+
+    for _,v in pairs(result_lines) do
+        table.insert(normalized_lines,'/'..v)
+    end
+
+    local final_paths,is_typescript=get_final_paths(normalized_lines,opts)
+
+    
+    return final_paths,is_typescript
+end
+
+
 local get_file_list_from_files=function(files,opts)
     local rel_paths=get_relative_paths(files)
 
@@ -100,6 +132,19 @@ M.get_single_file_list=function(opts)
 
     return get_file_list_from_files({full_path},opts)
 end
+
+M.get_last_commit_changes=function(opts)
+    return get_git_command_file_list('git diff --name-only HEAD~1',opts)
+end
+
+M.get_unstaged_file_list=function(opts)
+    return get_git_command_file_list('git diff --name-only',opts)
+end
+
+M.get_staged_file_list=function(opts)
+    return get_git_command_file_list('git diff --name-only --staged',opts)
+end
+
 
 M.get_command_from_files=function(files)
     local param=''

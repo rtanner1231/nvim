@@ -39,13 +39,18 @@ return {
                 
             },
         s={
-                name="Suitecloud",
+                name="SuiteScript",
                 s={":FormatSingleSuiteQL<cr>","Format SuiteQL under cursor"},
                 a={":FormatSuiteQL<cr>","Format all SuiteQL in file"},
-                p={":SDFDeploy<cr>","Run suitecloud deploy"},
-                c={":SDFSelectAccount<cr>","Select SDF Account"},
-                d={":SDFDeployDir<cr>","Deploy all files in current file's directory"},
-                f={":SDFDeployFile<cr>","Deploy current buffer file"}
+            },
+        d={
+                name="Suitecloud",
+                p={":SDF Deploy<cr>","Run suitecloud deploy"},
+                c={":SDF SelectAccount<cr>","Select SDF Account"},
+                l={":SDF DeployCurrentFolder<cr>","Deploy all files in current file's directory"},
+                f={":SDF DeployCurrentFile<cr>","Deploy current buffer file"},
+                d={":SDF Menu<cr>","Show deploy menu"}
+
             }
 
 

@@ -126,6 +126,11 @@ end
 
 local deploy_files=function(file_list,is_typescript)
     
+    if #file_list==0 then
+        Dialog.alert({'No files to deploy'})
+        return
+    end
+
     local sdf_account=suitecloudaccount()
     local confirm_message={sdf_account,"Deploy the following files?"}
 
@@ -144,22 +149,15 @@ local deploy_files=function(file_list,is_typescript)
     end)
 end
 
-vim.api.nvim_create_user_command("SDFDeploy",function()
+--------------------------------------------------------------------------------Entry functions
 
-    if not is_sdf_project() then
-        return
-    end
+
+local deploy=function()
 
     deploy_project()
-end,{})
+end
 
-
-vim.api.nvim_create_user_command("SDFSelectAccount",function()
-
-    
-    if not is_sdf_project() then
-        return
-    end
+local select_account=function()
 
     local accounts=get_sdf_accounts()
     -- local account_options={
@@ -168,29 +166,166 @@ vim.api.nvim_create_user_command("SDFSelectAccount",function()
     --     {option_text="PROD",value="PROD"}
     -- }
     Dialog.option('Select SDF Account',accounts,set_sdf_account)
-end,{})
+end
 
-vim.api.nvim_create_user_command("SDFDeployDir",function()
+local get_opts=function()
+    return {typescript_path='/TypeScripts/'}
+end
+
+local deploy_dir=function()
+    local files,is_typescript=SDFFileDeploy.get_dir_file_list(get_opts())
+
+    deploy_files(files,is_typescript)
+
+end
+
+local deploy_file=function()
+
+    local files,is_typescript=SDFFileDeploy.get_single_file_list(get_opts())
+
+    deploy_files(files,is_typescript)
+end
+
+local deploy_git_last_commit=function()
+    local files,is_typescript=SDFFileDeploy.get_last_commit_changes(get_opts())
+
+    deploy_files(files,is_typescript)
+end
+
+local deploy_git_unstaged=function()
+    local files,is_typescript=SDFFileDeploy.get_unstaged_file_list(get_opts())
+    
+    deploy_files(files,is_typescript)
+end
+
+local deploy_git_staged=function()
+    local files,is_typescript=SDFFileDeploy.get_staged_file_list(get_opts())
+    
+    deploy_files(files,is_typescript)
+end
+
+local run_command,show_function_menu
+
+local command_list={
+    {option_text="Menu", value="Menu"},
+    {option_text="Deploy",value="Deploy", callback=deploy},
+    {option_text="Deploy Current Folder",value="DeployCurrentFolder",callback=deploy_dir},
+    {option_text="Deploy Current File",value="DeployCurrentFile",callback=deploy_file},
+    {option_text="Deploy Changes Since Last Commit", value="GitDeployLastCommit",callback=deploy_git_last_commit},
+    {option_text="Deploy Unstaged changes",value="GitDeployUnstaged",callback=deploy_git_unstaged},
+    {option_text="Deploy Staged Changes",value="GitDeployStaged",callback=deploy_git_staged},
+    {option_text="Select Account",value="SelectAccount",callback=select_account},
+}
+
+function run_command(command)
+    if command=='Menu' then
+        show_function_menu()
+        return
+    end
+    -- elseif command=='Deploy' then
+    --     deploy()
+    -- elseif command=='DeployCurrentFolder' then
+    --     deploy_dir()
+    -- elseif command=='DeployCurrentFile' then
+    --     deploy_file()
+    -- elseif command=='SelectAccount' then
+    --     select_account()
+    -- elseif command=='GitLastCommit' then
+    --     deploy_git_last_commit()
+    -- end
+
+    for _,v in pairs(command_list) do
+        if v.value==command then
+            v.callback()
+            return
+        end
+    end
+end
+
+function show_function_menu()
+    local menu_list={}
+    for _,v in pairs(command_list) do
+        if v.value~='Menu' then
+            table.insert(menu_list,v)
+        end
+    end
+
+
+    Dialog.option('Select Command',menu_list,run_command)
+end
+
+
+-- vim.api.nvim_create_user_command("SDFDeploy",function()
+--
+--     if not is_sdf_project() then
+--         return
+--     end
+--
+--     deploy_project()
+-- end,{})
+--
+--
+-- vim.api.nvim_create_user_command("SDFSelectAccount",function()
+--
+--     
+--     if not is_sdf_project() then
+--         return
+--     end
+--
+--     local accounts=get_sdf_accounts()
+--     -- local account_options={
+--     --     {option_text="SB1",value="SB1"},
+--     --     {option_text="UAT",value="UAT"},
+--     --     {option_text="PROD",value="PROD"}
+--     -- }
+--     Dialog.option('Select SDF Account',accounts,set_sdf_account)
+-- end,{})
+--
+-- vim.api.nvim_create_user_command("SDFDeployDir",function()
+--
+--     if not is_sdf_project() then
+--         return
+--     end
+--
+--     local files,is_typescript=SDFFileDeploy.get_dir_file_list({typescript_path='/TypeScripts/'})
+--
+--     deploy_files(files,is_typescript)
+--     
+-- end,{})
+--
+-- vim.api.nvim_create_user_command("SDFDeployFile",function()
+--
+--     if not is_sdf_project() then
+--         return
+--     end
+--
+--     local files,is_typescript=SDFFileDeploy.get_single_file_list({typescript_path='/TypeScripts/'})
+--
+--     deploy_files(files,is_typescript)
+--     
+-- end,{})
+
+vim.api.nvim_create_user_command("SDF",function(opts)
+   if #opts.fargs==0 then
+    print('no args')
+    return
+   end
 
     if not is_sdf_project() then
         return
     end
 
-    local files,is_typescript=SDFFileDeploy.get_dir_file_list({typescript_path='/TypeScripts/'})
 
-    deploy_files(files,is_typescript)
-    
-end,{})
+    run_command(opts.args)
 
-vim.api.nvim_create_user_command("SDFDeployFile",function()
+end,{
+        nargs=1,
+        complete=function(_,_,_)
+            local cList={}
+            for _,v in pairs(command_list) do
+                table.insert(cList,v.value)
+            end
+            return cList
+        end
 
-    if not is_sdf_project() then
-        return
-    end
-
-    local files,is_typescript=SDFFileDeploy.get_single_file_list({typescript_path='/TypeScripts/'})
-
-    deploy_files(files,is_typescript)
-    
-end,{})
-
+    })
