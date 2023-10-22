@@ -51,6 +51,11 @@ return {
                 f={":SDF DeployCurrentFile<cr>","Deploy current buffer file"},
                 d={":SDF Menu<cr>","Show deploy menu"}
 
+            },
+        f={
+                name="Telescope",
+                f={"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>","Find Files"},
+                d={"<cmd>Telescope frecency workspace=CWD<cr>","Frecency"}
             }
 
 
