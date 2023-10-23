@@ -17,6 +17,7 @@ end
 
 --   פּ ﯟ   some other good icons
 local kind_icons = {
+  Codeium="",
   Text = "󰊄",
   Method = "m",
   Function = "󰊕",
@@ -110,6 +111,7 @@ cmp.setup {
   },
   sources = {
     { name = "nvim_lsp" },
+    { name='codeium'},
     { name = "nvim_lua" },
     { name = "luasnip" },
     { name = "buffer" },
