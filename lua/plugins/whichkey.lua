@@ -55,7 +55,8 @@ return {
         f={
                 name="Telescope",
                 f={"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>","Find Files"},
-                d={"<cmd>Telescope frecency workspace=CWD<cr>","Frecency"}
+                d={"<cmd>Telescope frecency workspace=CWD<cr>","Frecency"},
+                h={"<cmd> Telescope help_tags<cr>","Help Tags"},
             }
 
 
