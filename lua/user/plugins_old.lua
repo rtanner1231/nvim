@@ -58,11 +58,14 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
   },
-  'JoosepAlviste/nvim-ts-context-commentstring',
+  --'JoosepAlviste/nvim-ts-context-commentstring',
   'HiPhish/rainbow-delimiters.nvim',
   --"nvim-treesitter/playground",
 
   -- Git
   "lewis6991/gitsigns.nvim",
   "tpope/vim-fugitive",
+
+    --{'rtanner1231/sdftools.nvim',dev=true}
+    --'rtanner1231/sdftools.nvim'
 }
