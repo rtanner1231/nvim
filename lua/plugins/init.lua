@@ -60,6 +60,7 @@ return {
   {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
+    commit="d94e1ad9575cc211b5726f09b28ca9454aba22fe"
   },
   'JoosepAlviste/nvim-ts-context-commentstring',
   'HiPhish/rainbow-delimiters.nvim',
