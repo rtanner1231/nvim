@@ -36,4 +36,4 @@ require "user.rainbow-delimiter"
 --require "user.harpoon"
 --require("luasnip.loaders.from_vscode").lazy_load({ paths = {"./lua/user.snippets.suitescript" }})
 --
-require "user.custom.nsconn"
+--require "user.custom.nsconn"
