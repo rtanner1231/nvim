@@ -6,7 +6,15 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.g.mapleader=' '
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
-require("lazy").setup('plugins')
+require("lazy").setup('plugins',{
+    dev = {
+    -- directory where you store your local plugin projects
+    path = "~/projects/nvimplugins",
+    ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
+    patterns = {'rtanner1231'}, -- For example {"folke"}
+    fallback = false, -- Fallback to git when local plugin doesn't exist
+  },
+})
 require "user.options"
 require "user.keymaps"
 require "user.colorscheme"
@@ -23,7 +31,9 @@ require "user.toggleterm"
 require "user.lualine"
 require "user.project"
 require "user.rainbow-delimiter"
-require "user.custom.formatsql"
-require "user.custom.sdf"
+--require "user.custom.formatsql"
+--require "user.custom.sdf"
 --require "user.harpoon"
 --require("luasnip.loaders.from_vscode").lazy_load({ paths = {"./lua/user.snippets.suitescript" }})
+--
+require "user.custom.nsconn"

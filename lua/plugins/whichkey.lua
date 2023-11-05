@@ -39,9 +39,14 @@ return {
                 
             },
         s={
-                name="SuiteScript",
-                s={":FormatSingleSuiteQL<cr>","Format SuiteQL under cursor"},
-                a={":FormatSuiteQL<cr>","Format all SuiteQL in file"},
+                name="SuiteQL",
+                s={":SuiteQL FormatQuery<cr>","Format SuiteQL under cursor"},
+                a={":SuiteQL FormatFile<cr>","Format all SuiteQL in file"},
+                r={":SuiteQL RunCurrentQuery<cr>","Run Query under cursor"},
+                f={":SuiteQL ToggleQueryFullScreen<cr>","Toggle full screen query window"},
+                m={":SuiteQL ToggleQueryMode<cr>","Toggle between table and json mode"},
+                q={":SuiteQL CloseQuery<cr>","Close the query window"},
+                o={":SuiteQL SortColumn<cr>","Sort the current column"},
             },
         d={
                 name="Suitecloud",
@@ -57,6 +62,10 @@ return {
                 f={"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>","Find Files"},
                 d={"<cmd>Telescope frecency workspace=CWD<cr>","Frecency"},
                 h={"<cmd> Telescope help_tags<cr>","Help Tags"},
+            },
+            x={
+                name= 'Nvim dev',
+                x={":source %<cr>","Run current file"}
             }
 
 
