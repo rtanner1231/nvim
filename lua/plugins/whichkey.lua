@@ -47,6 +47,8 @@ return {
                 m={":SuiteQL ToggleQueryMode<cr>","Toggle between table and json mode"},
                 q={":SuiteQL CloseQuery<cr>","Close the query window"},
                 o={":SuiteQL SortColumn<cr>","Sort the current column"},
+                l={":SuiteQL NextPage<cr>","Get next page of results"},
+                h={":SuiteQL PrevPage<cr>","Get previous page of results"},
             },
         d={
                 name="Suitecloud",
