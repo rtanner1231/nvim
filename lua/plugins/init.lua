@@ -55,7 +55,7 @@ return {
   -- Telescope
   "nvim-telescope/telescope.nvim",
   'nvim-telescope/telescope-media-files.nvim',
-
+  'smartpde/telescope-recent-files',
   -- Treesitter
   {
     "nvim-treesitter/nvim-treesitter",

@@ -49,6 +49,9 @@ return {
                 o={":SuiteQL SortColumn<cr>","Sort the current column"},
                 l={":SuiteQL NextPage<cr>","Get next page of results"},
                 h={":SuiteQL PrevPage<cr>","Get previous page of results"},
+                e={":SuiteQL ToggleEditor<cr>","Toggle SuiteQL editor"},
+                w={":SuiteQL EditQuery<cr>","Edit the query under the cursor"}
+                
             },
         d={
                 name="Suitecloud",
@@ -64,6 +67,7 @@ return {
                 f={"<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>","Find Files"},
                 d={"<cmd>Telescope frecency workspace=CWD<cr>","Frecency"},
                 h={"<cmd> Telescope help_tags<cr>","Help Tags"},
+                r={"<cmd>lua require('telescope').extensions.recent_files.pick()<CR>","Recent Files"}
             },
             x={
                 name= 'Nvim dev',
