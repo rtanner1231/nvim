@@ -42,15 +42,9 @@ return {
                 name="SuiteQL",
                 s={":SuiteQL FormatQuery<cr>","Format SuiteQL under cursor"},
                 a={":SuiteQL FormatFile<cr>","Format all SuiteQL in file"},
-                r={":SuiteQL RunCurrentQuery<cr>","Run Query under cursor"},
-                f={":SuiteQL ToggleQueryFullScreen<cr>","Toggle full screen query window"},
-                m={":SuiteQL ToggleQueryMode<cr>","Toggle between table and json mode"},
-                q={":SuiteQL CloseQuery<cr>","Close the query window"},
-                o={":SuiteQL SortColumn<cr>","Sort the current column"},
-                l={":SuiteQL NextPage<cr>","Get next page of results"},
-                h={":SuiteQL PrevPage<cr>","Get previous page of results"},
                 e={":SuiteQL ToggleEditor<cr>","Toggle SuiteQL editor"},
-                w={":SuiteQL EditQuery<cr>","Edit the query under the cursor"}
+                w={":SuiteQL EditQuery<cr>","Edit the query under the cursor"},
+                c={":SuiteQL SelectProfile<cr>","Change the active profile"}
                 
             },
         d={
