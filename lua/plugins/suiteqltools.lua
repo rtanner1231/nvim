@@ -15,7 +15,8 @@ return {
                 nextPage="<leader>sn",
                 previousPage="<leader>sp",
                 toggleDisplayMode="<leader>sm"
-            }
+            },
+            history=true
         }
     }
 }
