@@ -67,7 +67,15 @@ return {
             x={
                 name= 'Nvim dev',
                 x={":source %<cr>","Run current file"}
-            }
+            },
+        o={
+            name="Obsidian",
+            o={"<cmd>ObsidianQuickSwitch<cr>","Search notes"},
+            t={"<cmd>ObsidianTags<cr>","Search Tags"},
+            b={"<cmd>ObsidianBacklinks<cr>","Search backlinks"},
+            p={"<cmd>ObsidianOpen<cr>","Open note"},
+            n={"<cmd>ObsidianNew<cr>","New Note"}
+        }
 
 
         }, {prefix="<leader>"})
