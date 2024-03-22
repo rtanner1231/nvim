@@ -16,7 +16,8 @@ return {
                 previousPage="<leader>sp",
                 toggleDisplayMode="<leader>sm"
             },
-            history=true
+            history=true,
+            completion=true
         }
     }
 }
