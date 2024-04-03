@@ -17,11 +17,9 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
-
-keymap("i","<C-s>q",'<C-o>:SuiteQL ShowTablePicker<cr>',opts)
-keymap("i","<C-s>k",'<C-o>:SuiteQL ShowFieldPicker<cr>',opts)
-keymap("i","<C-s>q",'<C-o>:SuiteQL ShowLastTableFieldPicker<cr>',opts)
-
+keymap("i","<C-s>q",'<Esc><cmd>SuiteQL ShowTablePicker<cr>',opts)
+keymap("i","<C-s>k",'<Esc><cmd>SuiteQL ShowFieldPicker<cr>',opts)
+keymap("i","<C-s>l",'<Esc><cmd>SuiteQL ShowLastTableFieldPicker<cr>',opts)
 
 -- Normal --
 -- Better window navigation
