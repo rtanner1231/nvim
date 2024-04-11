@@ -74,10 +74,11 @@ return {
         o={
             name="Obsidian",
             o={"<cmd>ObsidianQuickSwitch<cr>","Search notes"},
-            t={"<cmd>ObsidianTags<cr>","Search Tags"},
+            s={"<cmd>ObsidianTags<cr>","Search Tags"},
             b={"<cmd>ObsidianBacklinks<cr>","Search backlinks"},
             p={"<cmd>ObsidianOpen<cr>","Open note"},
-            n={"<cmd>ObsidianNew<cr>","New Note"}
+            n={"<cmd>ObsidianNew<cr>","New Note"},
+            t={"<cmd>ObsidianToday<cr>","Todays Note"}
         }
 
 
