@@ -1,10 +1,11 @@
+vim.g.mapleader=' '
+vim.g.maplocalleader = " "
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   -- bootstrap lazy.nvim
   -- stylua: ignore
   vim.fn.system({ "git", "clone", "--filter=blob:none", "https://github.com/folke/lazy.nvim.git", "--branch=stable", lazypath })
 end
-vim.g.mapleader=' '
 vim.opt.rtp:prepend(vim.env.LAZY or lazypath)
 require("lazy").setup('plugins',{
     dev = {
@@ -12,7 +13,7 @@ require("lazy").setup('plugins',{
     path = "~/projects/nvimplugins",
     ---@type string[] plugins that match these patterns will use your local versions instead of being fetched from GitHub
     patterns = {'rtanner1231'}, -- For example {"folke"}
-    fallback = false, -- Fallback to git when local plugin doesn't exist
+    fallback = true, -- Fallback to git when local plugin doesn't exist
   },
 })
 require "user.options"
