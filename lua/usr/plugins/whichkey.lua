@@ -94,6 +94,12 @@ return {
 				n = { "<cmd>ObsidianNew<cr>", "New Note" },
 				t = { "<cmd>ObsidianToday<cr>", "Todays Note" },
 			},
+			g = {
+				name = "Git",
+				l = { "<cmd>lua lazygit_toggle()<CR>", "Open lazygit" },
+				b = { "<cmd>BlameToggle window<cr>", "Open git blame window" },
+				v = { "<cmd>BlameToggle virtual<cr>", "Show git blame virtual" },
+			},
 		}, { prefix = "<leader>" })
 		-- wk.register({
 		--         s={
