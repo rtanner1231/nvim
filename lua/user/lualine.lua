@@ -2,8 +2,8 @@ local status_ok, lualine = pcall(require, "lualine")
 if not status_ok then
 	return
 end
-
-local a = require "plenary.async"
+local lazy_status = require("lazy.status")
+-- local Path = require("plenary.path")
 
 local hide_in_width = function()
 	return vim.fn.winwidth(0) > 80
@@ -21,9 +21,9 @@ local diagnostics = {
 
 local diff = {
 	"diff",
-	colored = false,
+	colored = true,
 	symbols = { added = " ", modified = " ", removed = " " }, -- changes diff symbols
-  cond = hide_in_width
+	cond = hide_in_width,
 }
 
 local mode = {
@@ -39,10 +39,10 @@ local filetype = {
 	icon = nil,
 }
 
-local filename={
-    "filename",
-    icons_enabled="false",
-    icon=nil,
+local filename = {
+	"filename",
+	icons_enabled = "false",
+	icon = nil,
 }
 
 local branch = {
@@ -66,36 +66,39 @@ local progress = function()
 	return chars[index]
 end
 
-
 local spaces = function()
 	return "spaces: " .. vim.api.nvim_buf_get_option(0, "shiftwidth")
 end
 
 local read_file = function(path)
-    local content=''
-    local file=io.open(path,'r')
+	local content = ""
+	local file = io.open(path, "r")
 
-    if file then
-        content=file:read('*a')
-        file:close()
-    end
-    return content
+	if file then
+		content = file:read("*a")
+		file:close()
+	end
+	return content
 end
 
+-- local fileExists = function(file_path)
+-- 	return Path:new(file_path):exists()
+-- end
 
-local suitecloudaccount =function()
-    local cwd=vim.fn.getcwd()
-    local data=read_file(cwd..'/project.json')
-    --print(data);
-    --local file_lines=lines(data)
-    local _,_,c=string.find(data,'"defaultAuthId":%s*"(.*)"')
+local suitecloudaccount = function()
+	local cwd = vim.fn.getcwd()
 
-  --return [[hello world]]
-    if c==nil then
-        return ''
-    else
-        return c
-    end
+	local data = read_file(cwd .. "/project.json")
+	--print(data);
+	--local file_lines=lines(data)
+	local _, _, c = string.find(data, '"defaultAuthId":%s*"(.*)"')
+
+	--return [[hello world]]
+	if c == nil then
+		return ""
+	else
+		return c
+	end
 end
 
 lualine.setup({
@@ -109,10 +112,20 @@ lualine.setup({
 	},
 	sections = {
 		lualine_a = { branch, diagnostics },
-		lualine_b = { mode,filename },
+		lualine_b = { mode, filename },
 		lualine_c = {},
 		-- lualine_x = { "encoding", "fileformat", "filetype" },
-		lualine_x = { diff, suitecloudaccount, "encoding", filetype },
+		lualine_x = {
+			{
+				lazy_status.updates,
+				cond = lazy_status.has_updates,
+				color = { fg = "#ff9e64" },
+			},
+			diff,
+			suitecloudaccount,
+			"encoding",
+			filetype,
+		},
 		lualine_y = { location },
 		lualine_z = { progress },
 	},

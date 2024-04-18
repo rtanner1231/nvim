@@ -1,7 +1,6 @@
 local opts = { noremap = true, silent = true }
 
 local term_opts = { silent = true }
-
 -- Shorten function name
 local keymap = vim.api.nvim_set_keymap
 
@@ -17,16 +16,16 @@ vim.g.maplocalleader = " "
 --   visual_block_mode = "x",
 --   term_mode = "t",
 --   command_mode = "c",
-keymap("i","<C-s>q",'<Esc><cmd>SuiteQL ShowTablePicker<cr>',opts)
-keymap("i","<C-s>k",'<Esc><cmd>SuiteQL ShowFieldPicker<cr>',opts)
-keymap("i","<C-s>l",'<Esc><cmd>SuiteQL ShowLastTableFieldPicker<cr>',opts)
+keymap("i", "<C-s>q", "<Esc><cmd>SuiteQL ShowTablePicker<cr>", opts)
+keymap("i", "<C-s>k", "<Esc><cmd>SuiteQL ShowFieldPicker<cr>", opts)
+keymap("i", "<C-s>l", "<Esc><cmd>SuiteQL ShowLastTableFieldPicker<cr>", opts)
 
 -- Normal --
 -- Better window navigation
-keymap("n", "<C-h>", "<C-w>h", opts)
-keymap("n", "<C-j>", "<C-w>j", opts)
-keymap("n", "<C-K>", "<C-w>k", opts)
-keymap("n", "<C-l>", "<C-w>l", opts)
+-- keymap("n", "<C-h>", "<C-w>h", opts)
+-- keymap("n", "<C-j>", "<C-w>j", opts)
+-- keymap("n", "<C-K>", "<C-w>k", opts)
+-- keymap("n", "<C-l>", "<C-w>l", opts)
 
 --splits
 -- keymap("n","<leader>vv",":vsplit<CR>",opts)
@@ -44,7 +43,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Close current buffer
-keymap("n", "<leader>b", ":close<CR>",opts)
+keymap("n", "<leader>b", ":close<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -81,27 +80,27 @@ keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
 -- keymap("n", "<leader>f", "<cmd>Telescope find_files<cr>", opts)
 --keymap("n", "<leader>f", "<cmd>lua require'telescope.builtin'.find_files(require('telescope.themes').get_dropdown({ previewer = true }))<cr>", opts)
 keymap("n", "<c-t>", "<cmd>Telescope live_grep<cr>", opts)
-keymap('n', '<leader>r', ":lua require('telescope.builtin').lsp_references()<cr>", opts)
+keymap("n", "<leader>r", ":lua require('telescope.builtin').lsp_references()<cr>", opts)
 
 -- Nvimtree
 keymap("n", "<leader>e", ":NvimTreeToggle<cr>", opts)
 
 -- Toggle reletive line numbers
-keymap("n","<leader>l", ":set rnu!<cr>", opts)
+keymap("n", "<leader>l", ":set rnu!<cr>", opts)
 
 --Open code actions
-keymap("n","<leader>a",":CodeActionMenu<cr>",opts)
+keymap("n", "<leader>a", ":CodeActionMenu<cr>", opts)
 
 --git
-keymap("n","<leader>[",":Gitsigns prev_hunk<cr>",opts)
-keymap("n","<leader>]",":Gitsigns next_hunk<cr>",opts)
-keymap("n","<leader>=",":Gitsigns preview_hunk<cr>",opts)
+keymap("n", "<leader>[", ":Gitsigns prev_hunk<cr>", opts)
+keymap("n", "<leader>]", ":Gitsigns next_hunk<cr>", opts)
+keymap("n", "<leader>=", ":Gitsigns preview_hunk<cr>", opts)
 
 --navbuddy
-keymap("n","<leader>n",":Navbuddy<cr>",opts)
+keymap("n", "<leader>n", ":Navbuddy<cr>", opts)
 
 --trouble
-keymap("n","<leader>u",":TroubleToggle document_diagnostics<cr>",opts)
+keymap("n", "<leader>u", ":TroubleToggle document_diagnostics<cr>", opts)
 
 --suiteql
 --keymap("n","<leader>ss",":FormatSingleSuiteQL<cr>",opts)
