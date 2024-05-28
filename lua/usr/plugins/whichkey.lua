@@ -44,7 +44,7 @@ return {
 				a = { ":SuiteQL FormatFile<cr>", "Format all SuiteQL in file" },
 				e = { ":SuiteQL ToggleEditor<cr>", "Toggle SuiteQL editor" },
 				w = { ":SuiteQL EditQuery<cr>", "Edit the query under the cursor" },
-				c = { ":SuiteQL SelectProfile<cr>", "Change the active profile" },
+				c = { ":NSConn SelectProfile<cr>", "Change the active profile" },
 				h = { ":SuiteQL History<cr>", "View the query history" },
 				q = { ":SuiteQL ShowTablePicker<cr>", "Show the table picker" },
 				k = { ":SuiteQL ShowFieldPicker<cr>", "Show the field picker for the last table" },

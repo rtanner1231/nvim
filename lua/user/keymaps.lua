@@ -43,7 +43,7 @@ keymap("n", "<C-Right>", ":vertical resize +2<CR>", opts)
 keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 -- Close current buffer
-keymap("n", "<leader>b", ":close<CR>", opts)
+keymap("n", "<leader>b", ":bd<CR>", opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -105,3 +105,7 @@ keymap("n", "<leader>u", ":TroubleToggle document_diagnostics<cr>", opts)
 --suiteql
 --keymap("n","<leader>ss",":FormatSingleSuiteQL<cr>",opts)
 --keymap("n","<leader>sa",":FormatSuiteQL<cr>",opts)
+
+vim.keymap.set("n", "<leader>h", function()
+	vim.lsp.inlay_hint.enable(not vim.lsp.inlay_hint.is_enabled())
+end)

@@ -15,8 +15,35 @@ return {
 
 		-- import cmp-nvim-lsp plugin
 		local cmp_nvim_lsp = require("cmp_nvim_lsp")
+		local diagnosticSigns = {
+			{ name = "DiagnosticSignError", text = "" },
+			{ name = "DiagnosticSignWarn", text = "" },
+			{ name = "DiagnosticSignHint", text = "" },
+			{ name = "DiagnosticSignInfo", text = "" },
+		}
 
 		local keymap = vim.keymap -- for conciseness
+		local config = {
+			-- disable virtual text
+			virtual_text = true,
+			-- show signs
+			signs = {
+				active = diagnosticSigns,
+			},
+			update_in_insert = true,
+			underline = true,
+			severity_sort = true,
+			float = {
+				focusable = false,
+				style = "minimal",
+				border = "rounded",
+				source = "always",
+				header = "",
+				prefix = "",
+			},
+		}
+
+		vim.diagnostic.config(config)
 
 		vim.api.nvim_create_autocmd("LspAttach", {
 			group = vim.api.nvim_create_augroup("UserLspConfig", {}),
